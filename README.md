@@ -2,9 +2,9 @@
 A high-performance, low resource usage Windows application for real-time screen and audio recording.
 ## Features
 - Video sources
-  - Fullscreen
-  - Rectangle area on the screen
-  - Window or child window
+  - The entire screen
+  - A rectangular area
+  - A window
 - Audio sources
   - System output
   - Microphone
