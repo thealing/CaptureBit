@@ -56,10 +56,6 @@ LRESULT ComboBox::editProc(HWND window, UINT message, WPARAM wParam, LPARAM lPar
 			return TRUE;
 		}
 	}
-	if (message == WM_LBUTTONDOWN)
-	{
-		DefSubclassProc(window, message, wParam, lParam);
-	}
 	LRESULT result = DefSubclassProc(window, message, wParam, lParam);
 	HideCaret(window);
 	return result;
