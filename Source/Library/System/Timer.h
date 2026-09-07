@@ -32,15 +32,15 @@ private:
 
 	static LONGLONG getSystemTime();
 
-	static BOOL ntClose(HANDLE handle);
+	static NTSTATUS ntClose(HANDLE handle);
 
-	static BOOL ntCreateTimer(PHANDLE timerHandle, ACCESS_MASK desiredAccess, void* objectAttributes, DWORD timerType);
+	static NTSTATUS ntCreateTimer(PHANDLE timerHandle, ACCESS_MASK desiredAccess, void* objectAttributes, DWORD timerType);
 
-	static BOOL ntSetTimer(HANDLE timerHandle, PLARGE_INTEGER dueTime, PVOID timerApcRoutine, PVOID timerContext, BOOLEAN resume, LONG period, PBOOLEAN previousState);
+	static NTSTATUS ntSetTimer(HANDLE timerHandle, PLARGE_INTEGER dueTime, PVOID timerApcRoutine, PVOID timerContext, BOOLEAN resume, LONG period, PBOOLEAN previousState);
 
-	static BOOL ntQuerySystemTime(PLARGE_INTEGER currentTime);
+	static NTSTATUS ntQuerySystemTime(PLARGE_INTEGER currentTime);
 
-	static BOOL ntQueryTimerResolution(PULONG minimumResolution, PULONG maximumResolution, PULONG currentResolution);
+	static NTSTATUS ntQueryTimerResolution(PULONG minimumResolution, PULONG maximumResolution, PULONG currentResolution);
 
-	static BOOL ntSetTimerResolution(ULONG desiredResolution, BOOLEAN setResolution, PULONG currentResolution);
+	static NTSTATUS ntSetTimerResolution(ULONG desiredResolution, BOOLEAN setResolution, PULONG currentResolution);
 };

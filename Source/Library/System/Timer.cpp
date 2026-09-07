@@ -64,42 +64,42 @@ LONGLONG Timer::getSystemTime()
 	return time.QuadPart;
 }
 
-BOOL Timer::ntClose(HANDLE handle)
+NTSTATUS Timer::ntClose(HANDLE handle)
 {
 	static DynamicLibrary ntDll("ntdll.dll");
 	static NtClose* function = ntDll.getFunction<NtClose>("NtClose");
 	return function(handle);
 }
 
-BOOL Timer::ntCreateTimer(PHANDLE timerHandle, ACCESS_MASK desiredAccess, void* objectAttributes, DWORD timerType)
+NTSTATUS Timer::ntCreateTimer(PHANDLE timerHandle, ACCESS_MASK desiredAccess, void* objectAttributes, DWORD timerType)
 {
 	static DynamicLibrary ntDll("ntdll.dll");
 	static NtCreateTimer* function = ntDll.getFunction<NtCreateTimer>("NtCreateTimer");
 	return function(timerHandle, desiredAccess, objectAttributes, timerType);
 }
 
-BOOL Timer::ntSetTimer(HANDLE timerHandle, PLARGE_INTEGER dueTime, PVOID timerApcRoutine, PVOID timerContext, BOOLEAN resume, LONG period, PBOOLEAN previousState)
+NTSTATUS Timer::ntSetTimer(HANDLE timerHandle, PLARGE_INTEGER dueTime, PVOID timerApcRoutine, PVOID timerContext, BOOLEAN resume, LONG period, PBOOLEAN previousState)
 {
 	static DynamicLibrary ntDll("ntdll.dll");
 	static NtSetTimer* function = ntDll.getFunction<NtSetTimer>("NtSetTimer");
 	return function(timerHandle, dueTime, timerApcRoutine, timerContext, resume, period, previousState);
 }
 
-BOOL Timer::ntQuerySystemTime(PLARGE_INTEGER currentTime)
+NTSTATUS Timer::ntQuerySystemTime(PLARGE_INTEGER currentTime)
 {
 	static DynamicLibrary ntDll("ntdll.dll");
 	static NtQuerySystemTime* function = ntDll.getFunction<NtQuerySystemTime>("NtQuerySystemTime");
 	return function(currentTime);
 }
 
-BOOL Timer::ntQueryTimerResolution(PULONG minimumResolution, PULONG maximumResolution, PULONG currentResolution)
+NTSTATUS Timer::ntQueryTimerResolution(PULONG minimumResolution, PULONG maximumResolution, PULONG currentResolution)
 {
 	static DynamicLibrary ntDll("ntdll.dll");
 	static NtQueryTimerResolution* function = ntDll.getFunction<NtQueryTimerResolution>("NtQueryTimerResolution");
 	return function(minimumResolution, maximumResolution, currentResolution);
 }
 
-BOOL Timer::ntSetTimerResolution(ULONG desiredResolution, BOOLEAN setResolution, PULONG currentResolution)
+NTSTATUS Timer::ntSetTimerResolution(ULONG desiredResolution, BOOLEAN setResolution, PULONG currentResolution)
 {
 	static DynamicLibrary ntDll("ntdll.dll");
 	static NtSetTimerResolution* function = ntDll.getFunction<NtSetTimerResolution>("NtSetTimerResolution");
