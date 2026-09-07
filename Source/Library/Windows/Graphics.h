@@ -30,7 +30,7 @@ public:
 
 	void fillRect(const Rect& rect, const Brush& brush);
 
-	void clear(Color color);
+	void clear(Color color, Vector size);
 
 	HDC getHandle() const;
 

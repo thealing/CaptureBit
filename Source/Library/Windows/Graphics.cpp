@@ -72,7 +72,7 @@ void Graphics::fillRect(const Rect& rect, const Brush& brush)
 	FillRect(_handle, &rc, brush._handle);
 }
 
-void Graphics::clear(Color color)
+void Graphics::clear(Color color, Vector size)
 {
 	uint32_t pixel = RGB(color.blue, color.green, color.red);
 	BITMAPINFO bitmapInfo = {};
@@ -82,8 +82,8 @@ void Graphics::clear(Color color)
 	bitmapInfo.bmiHeader.biPlanes = 1;
 	bitmapInfo.bmiHeader.biBitCount = 32;
 	bitmapInfo.bmiHeader.biCompression = BI_RGB;
-	int width = GetDeviceCaps(_handle, HORZRES);
-	int height = GetDeviceCaps(_handle, VERTRES);
+	int width = size.x;
+	int height = size.y;
 	StretchDIBits(_handle, 0, 0, width, height, 0, 0, 1, 1, &pixel, &bitmapInfo, DIB_RGB_COLORS, SRCCOPY);
 }
 

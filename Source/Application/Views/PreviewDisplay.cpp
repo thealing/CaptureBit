@@ -185,13 +185,15 @@ void PreviewDisplay::drawPreviewDisabled(Graphics& graphics)
 	graphics.setFont(*fontStore.getDisplayFont());
 	graphics.setTextColor(255);
 	graphics.setBackgroundColor(0);
-	graphics.clear(0);
-	graphics.drawString(L"Preview Disabled", AlignmentMiddleCenter, 0, getSize());
+	Vector size = getSize();
+	graphics.clear(0, size);
+	graphics.drawString(L"Preview Disabled", AlignmentMiddleCenter, 0, size);
 }
 
 void PreviewDisplay::drawPreviewInactive(Graphics& graphics)
 {
-	graphics.clear(0);
+	Vector size = getSize();
+	graphics.clear(0, size);
 }
 
 void PreviewDisplay::onResize()

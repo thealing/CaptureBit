@@ -28,7 +28,8 @@ void CustomButton::doCustomPaint(Graphics& graphics, bool disabled, bool selecte
 		graphics.drawImage(*_image, Vector(0, 0));
 		return;
 	}
-	graphics.clear(0);
+	Vector size = getSize();
+	graphics.clear(0, size);
 	if (disabled)
 	{
 		graphics.blendImage(*_image, Vector(0, 0), 100);
