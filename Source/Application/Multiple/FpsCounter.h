@@ -6,7 +6,9 @@ public:
 
 	FpsCounter();
 
-	void reset();
+	void start();
+
+	void stop();
 
 	void recordFrame();
 

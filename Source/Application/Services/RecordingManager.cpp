@@ -46,7 +46,8 @@ void RecordingManager::start(SinkWriter* sinkWriter, Encoder* videoEncoder, Enco
 	_sinkWriter->start();
 	_videoEncoder->start();
 	_audioEncoder->start();
-	_fpsCounter.reset();
+	_fpsCounter.stop();
+	_fpsCounter.start();
 }
 
 void RecordingManager::stop()
@@ -92,7 +93,8 @@ void RecordingManager::resume()
 	_paused = false;
 	_videoEncoder->resume();
 	_audioEncoder->resume();
-	_fpsCounter.reset();
+	_fpsCounter.stop();
+	_fpsCounter.start();
 }
 
 bool RecordingManager::isRunning() const

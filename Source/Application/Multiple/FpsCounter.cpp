@@ -2,18 +2,22 @@
 
 FpsCounter::FpsCounter()
 {
-	reset();
+	start();
 }
 
-void FpsCounter::reset()
+void FpsCounter::start()
 {
-	_timer = NULL;
 	WriteLockHolder holder(&_lock);
 	_frameCounter = 0;
 	_measuredFps = -1;
 	_lastFrameTime = getTime();
 	_lastMeasureTime = _lastFrameTime;
 	_timer = new Timer(0.75, 1.0, BIND(FpsCounter, update, this));
+}
+
+void FpsCounter::stop()
+{
+	_timer = NULL;
 }
 
 void FpsCounter::recordFrame()
