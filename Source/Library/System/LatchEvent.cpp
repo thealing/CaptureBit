@@ -21,17 +21,6 @@ bool LatchEvent::set()
 	return false;
 }
 
-bool LatchEvent::reset()
-{
-	DWORD result = WaitForSingleObject(_handle, 0);
-	if (result == WAIT_OBJECT_0)
-	{
-		ResetEvent(_handle);
-		return true;
-	}
-	return false;
-}
-
 void LatchEvent::wait() const
 {
 	WaitForSingleObject(_handle, INFINITE);

@@ -10,8 +10,6 @@ public:
 
 	bool set();
 
-	bool reset();
-
 	void wait() const;
 
 private:
