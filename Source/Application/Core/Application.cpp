@@ -8,5 +8,5 @@ Application::Application(bool console)
 
 Application::~Application()
 {
-	LogUtil::logInfo(L"Application shut down.");
+	LogUtil::logInfo(L"Application stopped.");
 }
