@@ -22,7 +22,7 @@ void MainSettingsDialog::createControls(DialogWindow* window, MainSettings* sett
 	windowVisibilityNames[WindowVisibilityHidden] = L"Hidden";
 	window->addComboBox(L"Visibility during recording", 140, (int*)&settings->windowVisibility, windowVisibilityNames, ARRAYSIZE(windowVisibilityNames));
 	window->addSeparator();
-	window->addCheckBox(L"Ask to play the recording when finished", 16, &settings->askToPlayTheRecording);
+	window->addCheckBox(L"Ask to play the recorded video", 16, &settings->askToPlayTheRecording);
 	window->addSeparator();
 	window->addCheckBox(L"High quality preview", 16, &settings->highQualityPreview);
 	window->addCheckBox(L"Disable preview while recording", 16, &settings->disablePreviewDuringRecording);
