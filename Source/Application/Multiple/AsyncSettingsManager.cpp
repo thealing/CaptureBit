@@ -35,6 +35,5 @@ Settings AsyncSettingsManager<Settings>::getSettings() const
 {
 	_initEvent.wait();
 	ExclusiveLockHolder holder(&_lock);
-	_updateEventPool.resetEvents();
 	return _settings;
 }
