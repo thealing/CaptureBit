@@ -28,8 +28,6 @@ protected:
 
 	static const int Capacity = 16;
 
-private:
-
 	UniquePointer<Thread> _thread;
 	Event _stopEvent;
 	const Event** _events;
