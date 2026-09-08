@@ -1,7 +1,7 @@
 #pragma once
 
 template <typename Object>
-class ComPointer
+class ComPointer : NonCopyable
 {
 public:
 
