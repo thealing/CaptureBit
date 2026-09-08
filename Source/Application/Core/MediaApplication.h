@@ -17,4 +17,8 @@ private:
 	void setAccurateTimer();
 
 	void setDpiAwareness();
+
+private:
+
+	Status _status;
 };

@@ -14,29 +14,34 @@ MediaApplication::~MediaApplication()
 
 void MediaApplication::initPlatform()
 {
-	Status result;
-	if (result)
+	if (_status)
 	{
-		result = CoInitialize(NULL);
+		_status = CoInitialize(NULL);
 	}
-	if (result)
+	if (_status)
 	{
-		result = MFStartup(MF_VERSION);
+		_status = MFStartup(MF_VERSION);
 	}
-	if (!result)
+	if (!_status)
 	{
-		LogUtil::logComError(__FUNCTION__, result);
+		LogUtil::logComError(__FUNCTION__, _status);
 	}
 }
 
 void MediaApplication::uninitPlatform()
 {
-	Status result = MFShutdown();
-	if (!result)
+	if (_status)
 	{
-		LogUtil::logComError(__FUNCTION__, result);
+		_status = MFShutdown();
 	}
-	CoUninitialize();
+	if (_status)
+	{
+		CoUninitialize();
+	}
+	if (!_status)
+	{
+		LogUtil::logComError(__FUNCTION__, _status);
+	}
 }
 
 void MediaApplication::setAccurateTimer()
