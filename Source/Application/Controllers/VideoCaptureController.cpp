@@ -1,7 +1,8 @@
 #include "VideoCaptureController.h"
 
-VideoCaptureController::VideoCaptureController(VideoCaptureManager* videoCaptureManager, WindowCaptureFactory* windowCaptureFactory, ScreenCaptureFactory* screenCaptureFactory, VideoResizerFactory* videoResizerFactory, VideoSourceManager* videoSourceManager, VideoSettingsManager* videoSettingsManager, KeyboardListener* keyboardListener)
+VideoCaptureController::VideoCaptureController(MainWindow* mainWindow, VideoCaptureManager* videoCaptureManager, WindowCaptureFactory* windowCaptureFactory, ScreenCaptureFactory* screenCaptureFactory, VideoResizerFactory* videoResizerFactory, VideoSourceManager* videoSourceManager, VideoSettingsManager* videoSettingsManager, KeyboardListener* keyboardListener)
 {
+	_mainWindow = mainWindow;
 	_videoCaptureManager = videoCaptureManager;
 	_windowCaptureFactory = windowCaptureFactory;
 	_screenCaptureFactory = screenCaptureFactory;
@@ -74,8 +75,8 @@ void VideoCaptureController::onSourceSizeChanged()
 void VideoCaptureController::onSourceDestroyed()
 {
 	LogUtil::logInfo(L"VideoCaptureController: Video source destroyed.");
-	HWND window = GetDesktopWindow();
-	_videoSourceManager->setFullscreenSource(window);
+	HMONITOR monitor = _mainWindow->getMonitor();
+	_videoSourceManager->setFullscreenSource(monitor);
 }
 
 void VideoCaptureController::onRefreshHotkeyPressed()

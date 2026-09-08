@@ -2,9 +2,7 @@
 
 VideoSourceManager::VideoSourceManager()
 {
-	HWND window = GetDesktopWindow();
-	setFullscreenSource(window);
-	_timer = new Timer(1.0, 0.05, BIND(VideoSourceManager, update, this));
+	_timer = new Timer(0, 0.1, BIND(VideoSourceManager, update, this));
 }
 
 const Event* VideoSourceManager::getChangeEvent()
@@ -22,10 +20,13 @@ const Event* VideoSourceManager::getDestroyEvent()
 	return _destroyEventPool.getEvent();
 }
 
-void VideoSourceManager::setFullscreenSource(HWND window)
+void VideoSourceManager::setFullscreenSource(HMONITOR monitor)
 {
-	RECT rect = {};
-	setSource(VideoSourceFullscreen, window, rect);
+	MONITORINFO monitorInfo = {};
+	monitorInfo.cbSize = sizeof(MONITORINFO);
+	GetMonitorInfo(monitor, &monitorInfo);
+	HWND desktopWindow = GetDesktopWindow();
+	setSource(VideoSourceFullscreen, desktopWindow, monitorInfo.rcMonitor);
 }
 
 void VideoSourceManager::setRectangleSource(HWND window, RECT rect)

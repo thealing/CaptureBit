@@ -4,7 +4,7 @@ class VideoCaptureController : NonCopyable
 {
 public:
 
-	VideoCaptureController(VideoCaptureManager* videoCaptureManager, WindowCaptureFactory* windowCaptureFactory, ScreenCaptureFactory* screenCaptureFactory, VideoResizerFactory* videoResizerFactory, VideoSourceManager* videoSourceManager, VideoSettingsManager* videoSettingsManager, KeyboardListener* keyboardListener);
+	VideoCaptureController(MainWindow* mainWindow, VideoCaptureManager* videoCaptureManager, WindowCaptureFactory* windowCaptureFactory, ScreenCaptureFactory* screenCaptureFactory, VideoResizerFactory* videoResizerFactory, VideoSourceManager* videoSourceManager, VideoSettingsManager* videoSettingsManager, KeyboardListener* keyboardListener);
 
 	~VideoCaptureController();
 
@@ -31,6 +31,7 @@ private:
 private:
 
 	EventDispatcher _eventDispatcher;
+	WeakPointer<MainWindow> _mainWindow;
 	WeakPointer<VideoCaptureManager> _videoCaptureManager;
 	WeakPointer<WindowCaptureFactory> _windowCaptureFactory;
 	WeakPointer<ScreenCaptureFactory> _screenCaptureFactory;

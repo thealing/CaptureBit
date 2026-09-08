@@ -228,6 +228,11 @@ bool Window::getExcludedFromCapture() const
 	return getExcludedFromCapture(_handle);
 }
 
+HMONITOR Window::getMonitor() const
+{
+	return MonitorFromWindow(_handle, MONITOR_DEFAULTTONEAREST);
+}
+
 void Window::create(const wchar_t* className, const wchar_t* windowName)
 {
 	create(className, windowName, 0, NULL);

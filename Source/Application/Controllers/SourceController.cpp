@@ -26,9 +26,9 @@ void SourceController::onVideoSourceChanged()
 	bool selected = false;
 	if (source == VideoSourceFullscreen)
 	{
-		// TODO: Select display?
-		HWND window = GetDesktopWindow();
-		_videoSourceManager->setFullscreenSource(window);
+		Window* mainWindow = _sourcePanel->getTopLevelParent();
+		HMONITOR monitor = mainWindow->getMonitor();
+		_videoSourceManager->setFullscreenSource(monitor);
 		selected = true;
 	}
 	else

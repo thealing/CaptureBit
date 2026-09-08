@@ -12,7 +12,7 @@ public:
 
 	const Event* getDestroyEvent();
 
-	void setFullscreenSource(HWND window);
+	void setFullscreenSource(HMONITOR monitor);
 
 	void setRectangleSource(HWND window, RECT rect);
 

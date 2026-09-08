@@ -76,6 +76,8 @@ public:
 
 	bool getExcludedFromCapture() const;
 
+	HMONITOR getMonitor() const;
+
 protected:
 
 	void create(const wchar_t* className, const wchar_t* windowName);
