@@ -18,6 +18,5 @@ private:
 
 	UniquePointer<Font> _panelFont;
 	UniquePointer<Font> _displayFont;
-	UniquePointer<Font> _dialogFont;
 };
 
