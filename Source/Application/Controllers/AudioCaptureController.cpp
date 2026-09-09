@@ -12,7 +12,7 @@ AudioCaptureController::AudioCaptureController(AudioCaptureManager* audioCapture
 	_eventDispatcher.addEntry(audioDeviceProvider->getOutputChangeEvent(), BIND(AudioCaptureController, onOutputDeviceChanged, this));
 	_eventDispatcher.addEntry(audioSourceManager->getChangeEvent(), BIND(AudioCaptureController, onSourceChanged, this));
 	_eventDispatcher.addEntry(audioCaptureManager->getErrorEvent(), BIND(AudioCaptureController, onCaptureError, this));
-	_eventDispatcher.start(mainWindow);
+	_eventDispatcher.start();
 	LogUtil::logDebug(L"AudioCaptureController: Started on thread %i.", _eventDispatcher.getThreadId());
 }
 
@@ -64,6 +64,12 @@ void AudioCaptureController::onCaptureError()
 	updateCapture();
 }
 
+void AudioCaptureController::showErrorMessage()
+{
+	UniquePointer<const wchar_t> errorMessage = StringUtil::formatString(L"Failed to start audio capture!\nError: 0x%08X", (HRESULT)_captureError);
+	_mainWindow->showMessageBox(L"Audio error", errorMessage, MB_OK | MB_ICONERROR);
+}
+
 void AudioCaptureController::updateCapture()
 {
 	LogUtil::logInfo(L"AudioCaptureController: Updating capture.");
@@ -96,8 +102,8 @@ void AudioCaptureController::updateCapture()
 		{
 			delete capture;
 			_audioSourceManager->setSource(AudioSourceNone);
-			UniquePointer<const wchar_t> errorMessage = StringUtil::formatString(L"Failed to start audio capture!\nError: 0x%08X", (HRESULT)status);
-			_mainWindow->showMessageBox(L"Audio error", errorMessage, MB_OK | MB_ICONERROR);
+			_captureError = status;
+			_mainWindow->postTask(BIND(AudioCaptureController, showErrorMessage, this));
 			return;
 		}
 	}

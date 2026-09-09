@@ -20,15 +20,18 @@ private:
 
 	void onCaptureError();
 
+	void showErrorMessage();
+
 	void updateCapture();
 
 private:
 
-	WindowEventDispatcher _eventDispatcher;
+	EventDispatcher _eventDispatcher;
 	WeakPointer<AudioCaptureManager> _audioCaptureManager;
 	WeakPointer<AudioResamplerFactory> _audioResamplerFactory;
 	WeakPointer<AudioDeviceProvider> _audioDeviceProvider;
 	WeakPointer<AudioSourceManager> _audioSourceManager;
 	WeakPointer<MainWindow> _mainWindow;
+	Status _captureError;
 };
 
