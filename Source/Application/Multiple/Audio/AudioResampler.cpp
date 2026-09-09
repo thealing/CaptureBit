@@ -142,7 +142,15 @@ HRESULT AudioResampler::getSample(IMFSample** sample)
 		DWORD flags = 0;
 		MFT_OUTPUT_DATA_BUFFER data = {};
 		data.pSample = *sample;
-		result = _resampler->ProcessOutput(0, 1, &data, &flags);
+		HRESULT resampleResult = _resampler->ProcessOutput(0, 1, &data, &flags);
+		if (resampleResult == MF_E_TRANSFORM_NEED_MORE_INPUT)
+		{
+			result = S_FALSE;
+		}
+		else
+		{
+			result = resampleResult;
+		}
 	}
 	if (!result)
 	{
